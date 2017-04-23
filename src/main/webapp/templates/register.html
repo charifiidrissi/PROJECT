@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+    @import url(http://fonts.googleapis.com/css?family=Roboto:100);
+    .flat-form {
+       background: transparent;
+        color: white;
+        margin: 25px auto;
+        width: 390px;
+        height: 340px;
+        position: relative;
+        font-family: 'Roboto';
+    }
+    .flat-form .tabs {
+        display: block;
+
+       background: transparent;
+        width: 100%;
+        height: 40px;
+        margin: 0;
+        margin-bottom: 20px;
+        padding: 0;
+        position: relative;
+        list-style-type: none;
+    }
+    .flat-form .tabs li {
+        display: block;
+        margin: 0;
+        padding: 0;
+        float: left;
+    }
+    .flat-form .tabs li a {
+        display: block;
+
+        background: #0a6dc0;
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        float: left;
+        padding: 12px 22px;
+    }
+    .flat-form .tabs li a.active {
+        background: #b9cce7;
+        border-right: none;
+        -moz-transition: all 0.5s linear;
+        -o-transition: all 0.5s linear;
+        -webkit-transition: all 0.5s linear;
+        transition: all 0.5s linear;
+    }
+    .flat-form .tabs li a:hover {
+        background: #53a5f4;
+        -moz-transition: all 0.5s linear;
+        -o-transition: all 0.5s linear;
+        -webkit-transition: all 0.5s linear;
+        transition: all 0.5s linear;
+    }
+    .flat-form .tabs li:last-child a {
+        text-align: center;
+        width: 174px;
+        padding-left: 0;
+        padding-right: 0;
+        border-right: none;
+    }
+    .flat-form .form-action {
+        padding: 0 20px;
+        position: relative;
+    }
+    .flat-form h1 {
+        font-size: 42px;
+        padding-bottom: 10px;
+    }
+    .flat-form p {
+        font-size: 12px;
+        padding-bottom: 10px;
+        line-height: 25px;
+    }
+    .flat-form a {
+        color: yellow;
+        text-decoration: none;
+    }
+    .flat-form a:hover {
+        text-decoration: underline;
+    }
+    .flat-form form {
+        padding-right: 20px !important;
+    }
+    .flat-form form input[type=text], .flat-form form input[type=password], .flat-form form input[type=submit] {
+        font-family: 'Roboto';
+    }
+    .flat-form form input[type=text], .flat-form form input[type=password] {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 10px;
+        padding-left: 15px;
+        background: #fff;
+        border: none;
+        color: #e74c3c;
+        outline: none;
+    }
+    .flat-form form input.button {
+        border: none;
+        display: block;
+        background: #136899;
+        height: 40px;
+        width: 80px;
+        color: #ffffff;
+        text-align: center;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -moz-box-shadow: 0px 3px 1px #2075aa;
+        -webkit-box-shadow: 0px 3px 1px #2075aa;
+        box-shadow: 0px 3px 1px #2075aa;
+        -moz-transition: all 0.15s linear;
+        -o-transition: all 0.15s linear;
+        -webkit-transition: all 0.15s linear;
+        transition: all 0.15s linear;
+    }
+    .flat-form form input.button:hover {
+        background: #1e75aa;
+        -moz-box-shadow: 0 3px 1px #237bb2;
+        -webkit-box-shadow: 0 3px 1px #237bb2;
+        box-shadow: 0 3px 1px #237bb2;
+    }
+    .flat-form form input.button:active {
+        background: #136899;
+    @inclue box-shadow( 0 3px 1px #0f608c );
+    }
+    .flat-form form input::-webkit-input-placeholder {
+        color: #e74c3c;
+    }
+    .flat-form form input:-moz-placeholder {
+        color: #e74c3c;
+    }
+    .flat-form form input::-moz-placeholder {
+        color: #e74c3c;
+    }
+    .flat-form form input:-ms-input-placeholder {
+        color: #e74c3c;
+    }
+    .flat-form .show {
+        display: block;
+    }
+    .flat-form .hide {
+        display: none;
+    }
+
+    body {
+        background-image:url(http://www.snut.fr/wp-content/uploads/2015/09/image-de-mer-8.jpg);
+    }
+
+</style>
+    <!-- Custom styles for this template -->
+
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+    </style>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+
+
+<div class="container">
+
+
+    <div class="flat-form">
+        <ul class="tabs">
+            <li>
+                <a href="#login" >Login</a>
+            </li>
+            <li>
+                <a href="#register" class="active" >Register</a>
+            </li>
+
+        </ul>
+
+
+
+        <div id="login" class="form-action hide">
+            <h1>Login on Sea</h1>
+            <p>put your username and password</p>
+            <form th:action="@{/login}" method="POST">
+                <ul>
+                    <li>
+                        <input class="form-control" type="text" id="username11" name="username" placeholder="Username" />
+                    </li>
+                    <li>
+                        <input type="password" id="password11" name="password" placeholder="Password" />
+                    </li>
+
+                    <li>
+                        <input type="submit" value="Login" class="button" />
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <!--/#login.form-action-->
+        <div id="register" class="form-action show">
+            <h1>Register</h1>
+
+            <form th:action="@{/register}" th:object="${user}" method="POST">
+                <div th:if="${#fields.hasErrors()}" class="alert alert-warning">
+                    <strong>Warning!</strong>
+                    This alert box could indicate    a warning that might need attention to:
+                    <strong th:if="${#fields.hasErrors('username')}" >
+                        <strong > [username :</strong>
+                        <strong th:errors="*{username}" ></strong>
+                    </strong>
+                    <strong th:if="${#fields.hasErrors('password')}"  >
+                        <strong> ][password :</strong>
+                        <strong th:errors="*{password}" ></strong>
+                    </strong>
+                    <strong th:if="${#fields.hasErrors('email')}"  >
+                        <strong>] [email :</strong>
+                        <strong th:errors="*{email}" ></strong>
+                        <strong>]</strong>
+                    </strong>
+                </div>
+
+
+
+                <ul>
+                    <li>
+
+                        <input type="text" th:field="*{username}" id="username2" name="username" placeholder="Username" />
+
+                    </li>
+                    <li>
+
+                        <input type="text" th:field="*{email}" id="email" name="email" placeholder="email" />
+
+                    </li>
+                    <li>
+
+                        <input type="password" th:field="*{password}" id="password2" name="password" placeholder="Password" />
+
+                    </li>
+                    <li>
+                        <input type="submit" value="Sign Up" class="button" />
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <!--/#register.form-action-->
+
+        <!--/#register.form-action-->
+    </div>
+
+</div><!-- /.container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script>
+    $('.tabs').on('click', 'li a', function(e){
+        e.preventDefault();
+        var $tab = $(this),
+            href = $tab.attr('href');
+
+        $('.active').removeClass('active');
+        $tab.addClass('active');
+
+        $('.show')
+            .removeClass('show')
+            .addClass('hide')
+            .hide();
+
+        $(href)
+            .removeClass('hide')
+            .addClass('show')
+            .hide()
+            .fadeIn(550);
+    });
+</script>
+<script>
+    function valider() {
+
+        alert('dddd');
+        return false;
+                        }
+</script>
+</body>
+</html>
