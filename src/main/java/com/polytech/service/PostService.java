@@ -16,7 +16,7 @@ public interface PostService {
 
     public List<Post> fetchAll();
 
-    public List<Post> searchPost(long id);
+    public Post searchPost(long id);
 
     public void update(Post p);
 //////////////////////////Comment service

@@ -44,9 +44,16 @@ public class PostServiceImp implements PostService{
         return p;
     }
 
-    public List<Post> searchPost(long id)
+    public Post searchPost(long id)
     {
-        return postRepository.findById(id);
+       List<Post> l =postRepository.findById(id);
+       if(l.size()>0) {
+
+           l.get(0).setComments(commentRepository.getCommentsPost("" + l.get(0).getId()));
+           l.get(0).setLikePosts(likeRepository.likesPost("" + l.get(0).getId()));
+           return l.get(0);
+       }
+       else return new Post();
     }
 
     public void update(Post p){

@@ -284,6 +284,7 @@
       <div class="container" id="droite">
         <div cclass="starter-template">
             <div class="panel panel-white post panel-shadow row feed" th:each="post: ${posts}">
+
                 <div class="post-heading">
                     <div class="pull-left image">
                         <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image"/>
@@ -299,26 +300,32 @@
                 <div class="post-description">
                     <p th:text="${post.getContent()}"></p>
                     <div class="stats">
-                        <a th:href="@{/addLike?post=}+${post.getId()}" class="btn btn-default stat-item">
-                            <i class="fa fa-thumbs-up icon" th:text="${post.getLikePosts().size()}"></i>
-                        </a>
-                        <a href="#" class="btn btn-default stat-item">
-                            <i class="fa fa-share icon" th:text="${post.getComments().size()}"></i>
-                        </a>
+                        <button th:onclick="'javascript:addLikeAjax('+${post.getId()}+');'">
+
+                            <i class="fa fa-thumbs-up icon">
+                                <i th:class="nb_like+${post.getId()}" th:text="${post.getLikePosts().size()}"></i>
+                            </i>
+
+                        </button>
+
+                            <i class="fa fa-share icon" th:id="cmt+${post.getId()}" th:text="${post.getComments().size()}"></i>
+
                     </div>
                 </div>
                 <div class="post-footer">
-                      <form th:action="@{/addcomment?post=}+${post.getId()}" method="post">
+
                           <div class="input-group">
-                              <input class="form-control" name="content" placeholder="Add a comment" type="text"/>
+                              <input class="form-control" th:id="content+${post.getId()}" name="content" placeholder="Add a comment" type="text"/>
                               <span class="input-group-addon">
-                        <button type="submit"><i class="fa fa-edit"></i></button>
+                        <button th:onclick="'javascript:addCommentAjax('+${post.getId()}+');'" >
+                            <i class="fa fa-edit"></i>
+                        </button>
                         </span>
                           </div>
-                      </form>
+
 
                     <div class="vertical-menu">
-                      <ul class="comments-list">
+                      <ul class="comments-list" th:id="listeCmt+${post.getId()}">
 
                           <li class="comment" th:each="comment: ${post.getComments()}">
 
@@ -342,6 +349,8 @@
             </div>
         </div>
     </div>
+
+
 
 </div><!-- /.container -->
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
@@ -372,5 +381,62 @@
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script th:inline="javascript">
+ // var nb_cmt =0;
+    function addCommentAjax(id){
+          val=$('#content'+id).val();
+   //   if(nb_cmt==0)  nb_cmt =$('#cmt'+id).val();
+
+
+   //     nb_cmt++;
+
+        $(document).ready(function() {
+            $.ajax({
+                url: "http://localhost:8080/addcomment?post="+id+'-'+val
+            }).then(function(data) {
+                $('#listeCmt'+id).append('<li class="comment">'+
+
+                    '<a class="pull-left" href="#">'+
+                    '<img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar"/>'+
+                    '</a>'+
+                    '<div class="comment-body">'+
+                    '<div class="comment-heading">'+
+                    '<h4 class="user" >'+data.username+'</h4>'+
+                    '<h5 class="time">5 minutes ago</h5>'+
+                    '</div>'+
+                    '<p>'+data.content+'</p>'+
+                    '</div>'+
+
+                    '</li>');
+                $('#cmt'+id).text(data.nb_cmt);
+
+            });
+        });
+
+    }
+</script>
+<script th:inline="javascript">
+
+
+
+    function addLikeAjax(id){
+        // var elt = document.getElementById('id_post');
+        // var monPost = elt.innerText || elt.textContent;
+        $(document).ready(function() {
+            $.ajax({
+                url: "http://localhost:8080/addLike?post="+id
+            }).then(function(data) {
+                $('.nb_like'+id).text(data.nb_like);
+
+            });
+        });
+
+    }
+
+
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </body>
 </html>

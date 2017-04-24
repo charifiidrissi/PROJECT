@@ -24,7 +24,17 @@ public class Comment {
     @Column(name = "ID_POST")
     private int ID_POST;
 
+    @Transient
+    int nb_cmt;
     public Comment(){}
+
+    public int getNb_cmt() {
+        return nb_cmt;
+    }
+
+    public void setNb_cmt(int nb_cmt) {
+        this.nb_cmt = nb_cmt;
+    }
 
     public Comment(String content, String username, int ID_POST) {
         this.content = content;

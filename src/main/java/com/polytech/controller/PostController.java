@@ -49,24 +49,7 @@ public class PostController {
         return "redirect:feed";
     }
 
-    @RequestMapping(value = "/addcomment",method = RequestMethod.POST)
-    public String addComment(Comment comment, @RequestParam(value="post",
-            required=false, defaultValue="1") String id, Principal principal)
-    {
-        String username = principal.getName();
-        comment.setUsername(username);
-        comment.setID_POST(Integer.parseInt(id));
-        postServiceImp.addComment(comment);
-        return "redirect:feed.html";
-    }
 
-    @RequestMapping(value = "/addLike")
-    public String addLike(@RequestParam(value="post", required=false, defaultValue="1") String id, Principal principal){
-        String username = principal.getName();
-        LikePost likePost = new LikePost(username,Integer.parseInt(id));
-        //if like already exist then will be deleted
-        postServiceImp.addLike(likePost);
-        return "redirect:feed";
-    }
+
 
 }

@@ -27,11 +27,33 @@ public class Post {
     private List<LikePost> likePosts;
 
     @Transient
+    int nb_like;
+
+    @Transient
     private List<Comment> comments;
+
+    @Transient
+    int nb_comments;
 
     public Post(){
         comments= new ArrayList<>();
         likePosts = new ArrayList<>();
+    }
+
+    public int getNb_like() {
+        return nb_like;
+    }
+
+    public void setNb_like(int nb_like) {
+        this.nb_like = nb_like;
+    }
+
+    public int getNb_comments() {
+        return nb_comments;
+    }
+
+    public void setNb_comments(int nb_comments) {
+        this.nb_comments = nb_comments;
     }
 
     public Post(String username, String content) {
@@ -63,6 +85,7 @@ public class Post {
 
     public void setLikePosts(List<LikePost> likePosts) {
         this.likePosts = likePosts;
+        nb_like= likePosts.size();
     }
 
     public List<Comment> getComments() {
@@ -70,7 +93,9 @@ public class Post {
     }
 
     public void setComments(List<Comment> comments) {
+
         this.comments = comments;
+        nb_comments=comments.size();
     }
 
     public long getId() {
