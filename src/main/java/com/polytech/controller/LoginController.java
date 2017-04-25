@@ -28,6 +28,9 @@ public class LoginController {
         return "login";
     }
 
+
+
+
     @RequestMapping(value ="/register" , method = RequestMethod.POST)
     public String registerPage(@Valid User user ,BindingResult bindingResult){
         System.out.println(">>>>>>>>>>>>>>>>>>>"+user.getEmail());
