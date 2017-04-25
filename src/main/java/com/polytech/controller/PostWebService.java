@@ -42,7 +42,7 @@ public class PostWebService {
     {
 
         String[] parts =id.split("-");
-        String id2 = parts[0]; // 004
+        String id2 = parts[0];
         String content = parts[1];
 
         String username = principal.getName();
